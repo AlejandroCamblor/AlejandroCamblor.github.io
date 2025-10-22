@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Apuntes p5.js</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  </head>
+  <body>
+    <script>
+        function setup() {
+        createCanvas(800, 500);   
+        background(240);
+        noStroke();
+
+        
+        textSize(28);
+        textAlign(CENTER, TOP);
+        fill(135,195,247);
+        text("Mi deporte favorito", 320, 16);
+
+       
+        textSize(16);
+        fill(148,246,40);
+        text("El fútbol", 320, 52);
+
+        
+        textSize(12);
+        fill(139,0,0);
+        text("El fútbol es mi deporte favorito y se juega con un balón y en un campo de fútbol", 280, 72);
+       
+          // Esquinas: colocadas con números fijos
+        textSize(12);
+        fill(0);
+        textAlign(LEFT, TOP);
+        text("(0, 0)", 6, 6);        // arriba-izquierda
+
+        textAlign(RIGHT, TOP);
+        text("(640, 0)", 634, 6);    // arriba-derecha (hemos escrito 640 a mano)
+
+        textAlign(LEFT, BOTTOM);
+        text("(0, 360)", 6, 354);    // abajo-izquierda (360 a mano)
+
+        textAlign(RIGHT, BOTTOM);
+        text("(640, 360)", 634, 354);// abajo-derecha
+
+        // "Centro" aproximado a mano (320, 180)
+        textAlign(CENTER, CENTER);
+        textSize(14);
+        fill(30);
+        text("Centro (320, 180)", 320, 180);
+      }
+    </script>
+    
+  </body>
+</html>
