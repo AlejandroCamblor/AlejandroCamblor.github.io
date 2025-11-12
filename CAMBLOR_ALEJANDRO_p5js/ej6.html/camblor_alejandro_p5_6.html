@@ -11,22 +11,28 @@
   // A1 — Reutilización: añade movimiento con variables (sin condicionales)
 
   // Estado del objeto que se moverá (sol)
-  let x, y, v, d, r, s; 
+  let x_s, y_s, v_s, d_s, r_s;
+  let x_l, y_l, v_l, d_l, r_l; 
 
   function setup() {
     createCanvas(900, 500);
 
     //Tamaños relativos
-    d = min(width, height) * 0.2;
-    r = d / 2;
+    d_s = min(width, height) * 0.2;
+    r_s = d_s / 2;
+    d_l = width * 0.15;
+    r_l = d_l / 2;
+
 
     //Posición inicial relativa (evita números mágicos)
-    x = -r;              // empieza entrando
-    y = height * 0.1;   // altura de una 
+    x_s = -r_s;              // empieza entrando
+    y_s = height * 0.1;   // altura de una 
+    x_l = -width-r_l;              // empieza entrando
+    y_l = height * 0.3;   // altura de una 
 
     //Velocidad relativa al ancho
-    v = width / 1000;
-    s= width / 500;
+    v_s = width / 1000;
+    v_l= width / 500;
   }
 
   function draw(){
@@ -37,11 +43,13 @@
      //Sol
   fill(255, 204, 0);
   noStroke();
-  ellipse(x,y,d);
-    
-    //Movimiento (variables) 
-    x = x + v; 
+  ellipse(x_s,y_s,d_s);
 
+     //luna
+  fill(255, 255, 255);
+  noStroke();
+  ellipse(x_l,y_l,d_l);
+    
   //Arcoíris
   noFill();
   strokeWeight(20);
@@ -103,22 +111,20 @@
   fill(34, 139, 34); // verde
   noStroke();
   rect(0, 380, 400);
-    
-  fill(240, 200, 0);
-  rect(x - d, y*5.5 , d*2, d*0.8, d*0.1); // carrocería
-  fill(40);
-  circle(x - d*0.6, y + d*3.15, d*0.5);
-  circle(x + d*0.6, y + d*3.15, d*0.5);
-    
-    x = x + s;
-
+ 
     // Rotulito
     fill(0);
     textSize(10);
     textAlign(LEFT, TOP);
     text("A1 — Mi escena con variables (estado+movimiento simple, sin wrap)", 10, 10);
+
+  //Movimiento (variables) 
+  x_s = x_s + v_s; 
+  x_l = x_l + v_l; 
+    
   }
   </script>
   </body>
 
 </html>
+
