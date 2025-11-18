@@ -20,7 +20,7 @@
     //Tamaños relativos
     d_s = min(width, height) * 0.2;
     r_s = d_s / 2;
-    d_l = width * 0.15;
+    d_l = width * 0.08;
     r_l = d_l / 2;
 
 
@@ -32,23 +32,23 @@
 
     //Velocidad relativa al ancho
     v_s = width / 1000;
-    v_l= width / 500;
+    v_l= width / 700;
   }
 
   function draw(){
   createCanvas(400, 400);
   background(135, 206, 235); // cielo azul claro
 
-    
-     //Sol
+    //cielo azul
+  fill(135, 206, 235);
+  noStroke();
+  rect(x_s - d_s, y_s - d_s*0.4, d_s*2, d_s*0.8, d_s*0.1); 
+     
+    //Sol
   fill(255, 204, 0);
   noStroke();
   ellipse(x_s,y_s,d_s);
-
-     //luna
-  fill(255, 255, 255);
-  noStroke();
-  ellipse(x_l,y_l,d_l);
+    
     
   //Arcoíris
   noFill();
@@ -60,6 +60,17 @@
   stroke(0, 0, 255); arc(250, 400, 440, 220, PI, TWO_PI);
   stroke(75, 0, 130); arc(250, 400, 400, 200, PI, TWO_PI);
   stroke(148, 0, 211); arc(250, 400, 360, 180, PI, TWO_PI);
+    
+    //cielo azul oscuro
+  fill(0, 70, 245);
+  noStroke();
+  rect(x_l-width*10 , y_l*0 , d_l/0.017, d_l/0.1); 
+    
+    //luna
+  fill((245, 245, 245));
+  noStroke();
+  ellipse(x_l,y_l,d_l);
+    
 
   //Edificio
   fill(150); // gris
@@ -127,4 +138,5 @@
   </body>
 
 </html>
+
 
