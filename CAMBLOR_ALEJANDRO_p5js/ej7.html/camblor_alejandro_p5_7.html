@@ -15,6 +15,8 @@
   let x_l, y_l, v_l, d_l, r_l;
   let xc_s, adelanto_s;
   let xc_l, adelanto_l;
+  let xG, yG, vyG, sG, cuerda, dG, rG;
+  let troncoH, toncoW, S, copaD;
 
   function setup() {
     createCanvas(900, 500);
@@ -24,6 +26,8 @@
     r_s = d_s / 2;
     d_l = width * 0.08;
     r_l = d_l / 2;
+    dG = width * 0.07
+    rG = dG/2
 
 
     // Posición inicial relativa (evita números mágicos)
@@ -31,17 +35,29 @@
     y_s = height * 0.1;   // altura de una 
     x_l = -width-r_l;              // empieza entrando
     y_l = height * 0.3;   // altura de una 
+    xG = width * 0.1;
+    yG = height;
+    sG = 0.08 * height;
+    cuerda = 1.2 * sG;
+      
+    
 
     // Velocidad relativa al ancho
     v_s = width / 1000;
-    v_l= v_s;
+    v_l= width / 600;
+    vyG= width / 800;
     
     // Adelantos (por delante del astro)
     adelanto_s = width * 0.10; // 10% del ancho
     adelanto_l = width * 0.10;
     // Posiciones relativas de los cielos
     x_cs = x_s + adelanto_s;
-    x_cl = x_l + adelanto_l/20;
+    x_cl = (x_l-width*0.3) + adelanto_l/20;
+    // Variables árbol
+    S = 0.1*height;
+    troncoH = 1.2 * S;
+    troncoW = 0.3 * S;
+    copaD = 1.1 * S;
   }
 
   function draw(){
@@ -131,6 +147,22 @@
   fill(34, 139, 34); // verde
   noStroke();
   rect(0, 380, 400);
+    
+  // Tronco
+  fill(120, 80, 40);
+  rect(0.15 * width - 0.5 * troncoW, 0.95 * height - troncoH, troncoW, troncoH);
+  // Copa del árbol
+  fill(40, 140, 60); 
+  circle(0.15 * width, 0.95 * height - troncoH - 0.3 * S, copaD);
+    
+  // Coche
+    
+  
+  //Globo
+  fill(255, 80, 80); 
+  circle(xG, yG, sG); 
+  stroke(60);
+  line(xG, yG + 0.5 * sG, xG, yG + 0.5 * dG + cuerda);
  
     // Rotulito
     fill(0);
@@ -143,7 +175,10 @@
   x_cs = x_cs + v_s; 
 
   x_l  = x_l  + v_l;
-  x_cl = x_cl + v_l;   
+  x_cl = x_cl + v_l; 
+    
+  yG = yG - vyG;
+  xG = xG + vyG/2;
   
     
   }
@@ -151,3 +186,4 @@
   </body>
 
 </html>
+
