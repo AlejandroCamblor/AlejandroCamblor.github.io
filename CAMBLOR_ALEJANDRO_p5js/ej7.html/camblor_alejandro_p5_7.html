@@ -17,6 +17,7 @@
   let xc_l, adelanto_l;
   let xG, yG, vyG, sG, cuerda, dG, rG;
   let troncoH, toncoW, S, copaD;
+  let xC, vxC, L, H, wheelD;
 
   function setup() {
     createCanvas(900, 500);
@@ -39,30 +40,37 @@
     yG = height;
     sG = 0.08 * height;
     cuerda = 1.2 * sG;
+    xC = -width
+    yC = 0.9 * height
+    vxC = width/700
       
     
 
     // Velocidad relativa al ancho
     v_s = width / 1000;
-    v_l= width / 600;
+    v_l= width / 1000;
     vyG= width / 800;
     
     // Adelantos (por delante del astro)
     adelanto_s = width * 0.10; // 10% del ancho
     adelanto_l = width * 0.10;
     // Posiciones relativas de los cielos
-    x_cs = x_s + adelanto_s;
+    x_cs = (x_s-width*0.3) + adelanto_s/20;
     x_cl = (x_l-width*0.3) + adelanto_l/20;
     // Variables árbol
-    S = 0.1*height;
+    S = 0.1 * height;
     troncoH = 1.2 * S;
     troncoW = 0.3 * S;
     copaD = 1.1 * S;
+    // Variables coche
+    L = 0.12*height;
+    H = 0.4*L; 
+    wheelD = 0.25*L;
   }
 
   function draw(){
   createCanvas(400, 400);
-  background(135, 206, 235); // cielo azul claro
+  background(135); // cielo azul claro
 
     //cielo azul
   fill(135, 206, 235);
@@ -153,16 +161,21 @@
   rect(0.15 * width - 0.5 * troncoW, 0.95 * height - troncoH, troncoW, troncoH);
   // Copa del árbol
   fill(40, 140, 60); 
-  circle(0.15 * width, 0.95 * height - troncoH - 0.3 * S, copaD);
+  circle(0.15 * width, 0.95 * height - troncoH - 0.3 * S, copaD+0.03*x_s);
     
   // Coche
-    
+  fill(240, 200, 0); 
+  rect(xC - 0.5*L, 0.92*height - 0.85*H, L, H, 0.1*L); 
+  fill(40); 
+  circle(xC - 0.35*L, 0.9*height + 0.55*H, wheelD); 
+  circle(xC + 0.35*L, 0.9*height + 0.55*H, wheelD);  
   
   //Globo
   fill(255, 80, 80); 
   circle(xG, yG, sG); 
   stroke(60);
   line(xG, yG + 0.5 * sG, xG, yG + 0.5 * dG + cuerda);
+ 
  
     // Rotulito
     fill(0);
@@ -179,6 +192,10 @@
     
   yG = yG - vyG;
   xG = xG + vyG/2;
+    
+  xC = xC + vxC;
+    
+  S = S + 0.00008 * height;
   
     
   }
@@ -186,4 +203,5 @@
   </body>
 
 </html>
+
 
