@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>A1 — Mi escena con variables</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  </head>
+  <body>
+  <script>
+  // A1 — Reutilización: añade movimiento con variables (sin condicionales)
+
+  // Estado del objeto que se moverá (sol)
+  let x_s, y_s, r_s;
+  let x_m, y_m, v_m, d_m, r_m, D_m, R_m, θ_m, ω_m;
+  let x_v, y_v, v_v, d_v, r_v, D_v, R_v, θ_v, ω_v;
+  let x_t, y_t, v_t, d_t, r_t, D_t, R_t, θ_t, ω_t; 
+  let x_ma, y_ma, v_ma, d_ma, r_ma, D_ma, R_ma, θ_ma, ω_ma;
+  let x_j, y_j, v_j, d_j, r_j, D_j, R_j, θ_j, ω_j; 
+  let x_sa, y_sa, v_sa, d_sa, r_sa, D_sa, R_sa, θ_sa, ω_sa;
+  let x_n, y_n, v_n, d_n, r_n, D_n, R_n, θ_n, ω_n; 
+  let x_u, y_u, v_u, d_u, r_u, D_u, R_u, θ_u, ω_u; 
+  let x_l, y_l, v_l, d_l, r_l, D_l, R_l, θ_l, ω_l;
+  let centerX, centerY, sunsize;
+
+  function setup() {
+    createCanvas(700, 700);
+
+    // Tamaños relativos
+    sunsize = min(width, height) * 0.2;
+    r_s= sunsize/2
+    
+    D_m = sunsize * 1.4;
+    R_m = D_m / 2;
+    d_m = sunsize * 0.1;
+    r_m = d_m / 2;
+    
+    D_v = sunsize * 1.8;
+    R_v = D_v / 2;
+    d_v = sunsize * 0.15;
+    r_v = d_v / 2;
+    
+    D_t = sunsize * 2.5;
+    R_t = D_t / 2;
+    d_t = sunsize * 0.18;
+    r_t = d_t / 2;
+    
+    D_ma = sunsize * 3.2;
+    R_ma = D_ma / 2;
+    d_ma = sunsize * 0.12;
+    r_ma = d_ma / 2;
+    
+    D_j = sunsize * 4.0;
+    R_j = D_j / 2;
+    d_j = sunsize * 0.35;
+    r_j = d_j / 2;
+    
+    D_sa = sunsize * 4.5;
+    R_sa = D_sa / 2;
+    d_sa = sunsize * 0.25;
+    r_sa = d_sa / 2;
+    
+    D_u = sunsize * 5;
+    R_u = D_u / 2;
+    d_u = sunsize * 0.20;
+    r_u = d_u / 2;
+    
+    D_n = sunsize * 5.5;
+    R_n = D_n / 2;
+    d_n = sunsize * 0.22;
+    r_n = d_n / 2;
+    
+    D_l = D_t * 0.12;
+    R_l = D_l / 2;
+    d_l = d_t * 0.58;
+    r_l = d_l / 2;
+
+    // Velocidades angulares
+    ω_m =  0.030;
+    ω_v =  0.012;
+    ω_t = 0.010;
+    ω_ma = 0.008;
+    ω_j = 0.004;
+    ω_sa =  0.003;
+    ω_u = 0.002;
+    ω_n = 0.0015;
+    ω_l =0.04
+
+    // Ángulos iniciales
+    θ_m = 0;
+    θ_v = Math.PI / 36;
+    θ_t = 3 * Math.PI / 2;
+    θ_ma = -11 * Math.PI / 72;
+    θ_j = Math.PI / 2;
+    θ_sa = -Math.PI / 2;
+    θ_u = 4 * Math.PI / 3;
+    θ_n = Math.PI;
+    θ_l = 3 * Math.PI / 2;
+
+    // Posición inicial relativa (evita números mágicos)
+    centerX = width / 2;
+    centerY = height / 2;
+    
+    x_s = centerX;  // Sol
+    y_s = centerY;
+    
+    
+
+  }
+
+  function draw() {
+    background(0, 0, 20);  // Cielo azul claro
+
+    // Sol
+    fill(255, 204, 0);
+    noStroke();
+    ellipse(x_s, y_s, sunsize);
+    
+    // Mercurio
+    fill(142, 142, 147);
+    noStroke();
+    ellipse(x_m, y_m, d_m);
+    
+    // Venus
+    fill(255, 204, 102);
+    noStroke();
+    ellipse(x_v, y_v, d_v);
+    
+    // Tierra
+    fill(0, 0, 255);
+    noStroke();
+    ellipse(x_t, y_t, d_t);
+    
+    // Luna
+    fill(255);
+    noStroke();
+    ellipse(x_l, y_l, d_l);
+    
+    // Marte
+    fill(255, 69, 0);
+    noStroke();
+    ellipse(x_ma, y_ma, d_ma);
+    
+    // Júpiter
+    fill(210, 105, 30);
+    noStroke();
+    ellipse(x_j, y_j, d_j);
+    
+    //Saturno
+    fill(216, 211, 216);
+    noStroke();
+    ellipse(x_sa, y_sa, d_sa);
+    
+    //Urano
+    fill(150, 208, 220);
+    noStroke();
+    ellipse(x_u, y_u, d_u);
+    
+    
+   //Neptuno
+   fill(0, 105, 148);
+   noStroke();
+   ellipse(x_n,y_n,d_n);
+  
+    // Rotulito
+    fill(0);
+    textSize(10);
+    textAlign(LEFT, TOP);
+    text("A1 — Mi escena con variables (estado+movimiento simple, sin wrap)", 10, 10);
+
+  //Movimiento (variables)  
+  
+  θ_m = θ_m + ω_m;
+    
+  θ_v = θ_v + ω_v;
+    
+  θ_t = θ_t + ω_t;
+    
+  θ_ma = θ_ma + ω_ma;
+    
+  θ_j = θ_j + ω_j;
+    
+  θ_sa = θ_sa + ω_sa;
+    
+  θ_u = θ_u + ω_u;
+    
+  θ_n = θ_n + ω_n;
+    
+  θ_l = θ_l + ω_l;
+    
+  // Posiciones de los planetas  
+  x_m =  centerX + cos(θ_m) * R_m;  // Mercurio
+  y_m =  centerY + sin(θ_m) * R_m;
+    
+  x_v = centerX + cos(θ_v) * R_v;  // Venus
+  y_v = centerY + sin(θ_v) * R_v;
+    
+  x_t = centerX + cos(θ_t) * R_t;  // Tierra
+  y_t = centerY + sin(θ_t) * R_t;
+   
+  x_ma = centerX + cos(θ_ma) * R_ma;  // Marte
+  y_ma = centerY + sin(θ_ma) * R_ma;
+    
+  x_j = centerX + cos(θ_j) * R_j;  // Júpiter
+  y_j = centerY + sin(θ_j) * R_j;
+    
+  x_sa = centerX + cos(θ_sa) * R_sa;  // Saturno
+  y_sa = centerY + sin(θ_sa) * R_sa;
+    
+  x_u = centerX + cos(θ_u) * R_u;  // Urano
+  y_u = centerY + sin(θ_u) * R_u;
+   
+  x_n = centerX + cos(θ_n) * R_n;  // Neptuno
+  y_n = centerY + sin(θ_n) * R_n;
+    
+  x_l = x_t + cos(θ_l) * R_l;  // Luna
+  y_l = y_t + sin(θ_l) * R_l;
+    
+  }
+  </script>
+  </body>
+
+</html>
