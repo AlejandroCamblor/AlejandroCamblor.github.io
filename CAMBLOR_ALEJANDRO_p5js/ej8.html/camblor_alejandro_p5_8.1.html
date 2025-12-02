@@ -1,8 +1,8 @@
-<!doctype html>
+!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Mi Sistema Solar</title>
+    <title>A1 — Mi escena con variables</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
   </head>
@@ -34,39 +34,39 @@
     d_m = sunsize * 0.1;
     r_m = d_m / 2;
     
-    D_v = sunsize * 1.9;
+    D_v = sunsize * 1.8;
     R_v = D_v / 2;
-    d_v = sunsize * 0.2;
+    d_v = sunsize * 0.15;
     r_v = d_v / 2;
     
-    D_t = sunsize * 2.4;
+    D_t = sunsize * 2.5;
     R_t = D_t / 2;
-    d_t = sunsize * 0.22;
+    d_t = sunsize * 0.18;
     r_t = d_t / 2;
     
-    D_ma = sunsize * 2.9;
+    D_ma = sunsize * 3.2;
     R_ma = D_ma / 2;
-    d_ma = sunsize * 0.14;
+    d_ma = sunsize * 0.12;
     r_ma = d_ma / 2;
     
-    D_j = sunsize * 3.6;
+    D_j = sunsize * 4.0;
     R_j = D_j / 2;
-    d_j = sunsize * 0.45;
+    d_j = sunsize * 0.35;
     r_j = d_j / 2;
     
-    D_sa = sunsize * 4.2;
+    D_sa = sunsize * 4.5;
     R_sa = D_sa / 2;
-    d_sa = sunsize * 0.35;
+    d_sa = sunsize * 0.25;
     r_sa = d_sa / 2;
     
-    D_u = sunsize * 5.2;
+    D_u = sunsize * 5;
     R_u = D_u / 2;
-    d_u = sunsize * 0.30;
+    d_u = sunsize * 0.20;
     r_u = d_u / 2;
     
-    D_n = sunsize * 5.7;
+    D_n = sunsize * 5.5;
     R_n = D_n / 2;
-    d_n = sunsize * 0.28;
+    d_n = sunsize * 0.22;
     r_n = d_n / 2;
 
     // Velocidades angulares
@@ -149,12 +149,6 @@
    noStroke();
    ellipse(x_n,y_n,d_n);
   
-    // Rotulito
-    fill(0);
-    textSize(10);
-    textAlign(LEFT, TOP);
-    text("A1 — Mi escena con variables (estado+movimiento simple, sin wrap)", 10, 10);
-
   //Movimiento (variables)  
   
   θ_m = θ_m + ω_m;
@@ -203,4 +197,6 @@
   </body>
 
 </html>
+
+
 
