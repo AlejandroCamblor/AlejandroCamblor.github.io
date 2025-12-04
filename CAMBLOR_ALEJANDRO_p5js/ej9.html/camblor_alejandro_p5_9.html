@@ -21,6 +21,7 @@
   let x_n, y_n, v_n, d_n, r_n, D_n, R_n, θ_n, ω_n; 
   let x_u, y_u, v_u, d_u, r_u, D_u, R_u, θ_u, ω_u; 
   let x_l, y_l, v_l, d_l, r_l, D_l, R_l, θ_l, ω_l;
+  let x_apolo13, y_apolo13, v_apolo13, d_apolo13, r_apolo13, D_apolo13, R_apolo13, θ_apolo13, ω_apolo13;
   let centerX, centerY, sunsize;
 
   function setup() {
@@ -74,6 +75,11 @@
     R_l = D_l / 2;
     d_l = d_t * 0.58;
     r_l = d_l / 2;
+    
+    D_apolo13 = D_l * 0.6
+    R_apolo13 = D_apolo13/2
+    d_apolo13 = d_l * 0.9
+    r_apolo13 = d_apolo13/2
 
     // Velocidades angulares
     ω_m =  0.030;
@@ -84,7 +90,8 @@
     ω_sa =  0.003;
     ω_u = 0.002;
     ω_n = 0.0015;
-    ω_l =0.04
+    ω_l =0.04;
+    ω_apolo13 =0.04;
 
     // Ángulos iniciales
     θ_m = 0;
@@ -96,6 +103,8 @@
     θ_u = 4 * Math.PI / 3;
     θ_n = Math.PI;
     θ_l = 3 * Math.PI / 2;
+    θ_apolo13 = 3 * Math.PI / 2;
+
 
     // Posición inicial relativa (evita números mágicos)
     centerX = width / 2;
@@ -104,6 +113,8 @@
     x_s = centerX;  // Sol
     y_s = centerY;
     
+    
+
   }
 
   function draw() {
@@ -138,13 +149,23 @@
     noStroke();
     ellipse(x_t, y_t, d_t);
     
-    // Luna
-    noFill();
-    stroke(100);
-    circle(x_t, y_t, D_l);
-    fill(255);
-    noStroke();
-    ellipse(x_l, y_l, d_l);
+        // Luna
+        noFill();
+        stroke(100);
+        circle(x_t, y_t, D_l);
+        fill(255);
+        noStroke();
+        ellipse(x_l, y_l, d_l);
+        
+            // Apolo13
+            noFill();
+            stroke(140);
+            circle(x_l , y_l, D_apolo13);
+            fill(255);
+            noStroke();
+            rect(x_apolo13, y_apolo13, width * 0.008, height * 0.008);
+    
+    
     
     // Marte
     noFill();
@@ -185,7 +206,13 @@
    fill(0, 105, 148);
    noStroke();
    ellipse(x_n,y_n,d_n);
-    
+  
+    // Rotulito
+    fill(0);
+    textSize(10);
+    textAlign(LEFT, TOP);
+    text("A1 — Mi escena con variables (estado+movimiento simple, sin wrap)", 10, 10);
+
   //Movimiento (variables)  
   
   θ_m = θ_m + ω_m;
@@ -205,6 +232,8 @@
   θ_n = θ_n + ω_n;
     
   θ_l = θ_l + ω_l;
+  
+  θ_apolo13 = θ_apolo13 + ω_apolo13;
     
   // Posiciones de los planetas  
   x_m =  centerX + cos(θ_m) * R_m;  // Mercurio
@@ -233,12 +262,16 @@
     
   x_l = x_t + cos(θ_l) * R_l;  // Luna
   y_l = y_t + sin(θ_l) * R_l;
+  
+  x_apolo13 = x_l + cos(θ_apolo13) * R_apolo13;  // Apolo13
+  y_apolo13 = y_l + sin(θ_apolo13) * R_apolo13;
     
   }
   </script>
   </body>
 
 </html>
+
 
 
 
