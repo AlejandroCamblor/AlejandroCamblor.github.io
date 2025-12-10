@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>A1 — Mi escena con variables</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  </head>
+  <body>
+    <script>
+      // A1 — Reutilización: añade movimiento con variables (sin condicionales)
+
+      // Estado del objeto que se moverá (sol)
+      let x_s, y_s, v_s, d_s, r_s;
+
+      function setup() {
+        createCanvas(900, 500);
+
+        //Tamaños relativos
+        d_s = min(width, height) * 0.2;
+        r_s = d_s / 2;
+        
+        //Posición inicial relativa (evita números mágicos)
+        x_s = -r_s; // empieza entrando
+        y_s = height * 0.1; // altura de una
+        
+        //Velocidad relativa al ancho
+        v_s = width / 1000;
+        
+
+        
+      }
+
+      function draw() {
+        // Condicionales 
+        if(x_s <= width + r_s){
+            background(135, 206, 235);
+        }
+        else{
+            background(25, 25, 112);
+        }
+        
+        //Patio de hierba
+        fill(34, 139, 34); // verde
+        noStroke();
+        rect(0, 400, width, height*0.2);
+        
+        //Sol
+        fill(255, 204, 0);
+        noStroke();
+        ellipse(x_s,y_s,d_s);
+        
+        if(x_s >= 2 * width - r_s){
+          x_s = -r_s;  
+        }
+        
+        //Movimiento (variables)
+        x_s = x_s + v_s;
+
+      }
+    </script>
+  </body>
+</html>
