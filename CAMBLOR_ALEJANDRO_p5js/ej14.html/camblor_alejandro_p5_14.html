@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>A1 — Mi escena con variables</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  </head>
+  <body>
+    <script>
+      // A1 — Reutilización: añade movimiento con variables (sin condicionales)
+
+      // Estado del objeto que se moverá (sol)
+      let x_s, y_s, v_s, d_s, r_s;
+      let x_l, y_l, v_l, d_l, r_l;
+      let dia, mes, anio;
+      let x_p, y_p, S, v_p, ground_y, v_y, jump_v, g;
+      let rHead, bodyL, armL, legL;
+      let hipY, shoulderY, headY;
+
+      function setup() {
+        createCanvas(200, 200);
+
+        //Tamaños relativos
+        d_s = min(width, height) * 0.2;
+        r_s = d_s / 2;
+        d_l = d_s * 0.5;
+        r_l = d_l / 2;
+        
+        //Posición inicial relativa (evita números mágicos)
+        x_s = -r_s; // empieza entrando
+        y_s = height * 0.4; // altura de una
+        x_l = -width-d_s; // empieza entrando
+        y_l = height * 0.3; // altura de una 
+        //Velocidad relativa al ancho
+        v_s = width / 400;
+        v_l = v_s;
+        //Números iniciales dia, mes y año
+        dia = 1;
+        mes = 1;
+        anio= 2026;
+        
+        // Stickman
+        S  = 0.12 * min(width, height);
+        ground_y = 0.9 * height 
+        x_p = 0.25 * width;
+        y_p = ground_y;                 //y_p será la posición de los pies
+        // Movimiento horizontal
+        v_p = width / 150;
+        // Salto 
+        v_y = 1;
+        jump_v = -0.030 * height;      // impulso hacia arriba
+        g = 0.0016 * height;          // aceleración hacia abajo (pequeña)
+        
+        //Medidas stickman
+        rHead = 0.20 * S;
+        bodyL = 0.60 * S;
+        armL  = 0.45 * S;
+        legL  = 0.55 * S;
+        hipY = y_p - legL;          // cadera por encima de los pies
+        shoulderY = hipY - bodyL;  // hombros por encima de la cadera
+        headY = shoulderY - rHead; // centro de la cabeza
+
+      }
+
+      function draw() {
+        // Condicionales 
+        if(x_s <= width + r_s){
+            background(135, 206, 235);
+        }
+        else{
+            background(10);
+        }
+        
+        // Texto fecha
+        noStroke();
+        if (x_s <= width + r_s) 
+        { fill(0);} 
+        else { fill(255); } 
+        textSize(10);
+        text("Fecha: (" + dia + ") (" + mes + ") (" + anio + ")", 0, 10);
+        
+        //Patio de hierba
+        fill(34, 139, 34); // verde
+        noStroke();
+        rect(0, 180, width, height*0.2);
+        
+        //Sol
+        fill(255, 204, 0);
+        noStroke();
+        ellipse(x_s,y_s,d_s);
+        
+        //luna
+        fill(245, 245, 245);
+        noStroke();
+        ellipse(x_l,y_l,d_l);
+        
+        dibujarStickman();
+  
+        //Movimiento (variables)
+        x_s = x_s + v_s;
+        x_l = x_l + v_l; 
+        
+        dibujarCalendario();
+        
+        // FÍSICA DEL SALTO
+        v_y = v_y + g;
+        y_p = y_p + v_y;
+
+        if (y_p > ground_y) {
+          y_p = ground_y;
+          v_y = 0;
+        }
+
+        // RECALCULAR CUERPO-
+        hipY = y_p - legL;
+        shoulderY = hipY - bodyL;
+        headY = shoulderY - rHead;
+          
+        if (keyIsDown(LEFT_ARROW)) 
+        {x_p = x_p - v_p;} 
+        else if (keyIsDown(RIGHT_ARROW)) 
+        {x_p = x_p + v_p;}
+
+        if (x_p < 0) 
+        {x_p = 0;}
+        if (x_p > width) 
+        {x_p = width;}
+        
+        
+      }
+        
+        function keyPressed() {
+        if (keyCode === UP_ARROW) {
+        if (y_p >= ground_y) {
+          v_y = jump_v;
+          }
+        }
+      }
+      
+      function dibujarStickman() {
+        //Stickman
+        if (x_s <= width + r_s) 
+        { stroke(0);} 
+        else { stroke (255); } 
+        strokeWeight(0.06 * S);
+        noFill();
+        
+        
+        // Cabeza
+        circle(x_p, headY, 2 * rHead);
+        // Tronco
+        line(x_p, shoulderY, x_p, hipY);
+        // Brazos (una línea horizontal + dos líneas hacia abajo)
+        line(x_p - 0.25*S, shoulderY, x_p + 0.25*S, shoulderY);
+        line(x_p - 0.25*S, shoulderY, x_p - 0.25*S, shoulderY + armL);
+        line(x_p + 0.25*S, shoulderY, x_p + 0.25*S, shoulderY + armL);
+        // Piernas
+        line(x_p, hipY, x_p - 0.18*S, y_p);
+        line(x_p, hipY, x_p + 0.18*S, y_p);
+      }
+      
+      function dibujarCalendario() {
+        if (x_s >= 2 * width + d_l) {
+        x_s = -r_s;
+        x_l = -width - d_s;
+
+        dia = dia + 1;
+        if (dia > 30) {
+        dia = 1;
+        mes = mes + 1;
+        }
+        if (mes > 12) {
+        mes = 1;
+        anio = anio + 1;
+        }
+       } 
+      }
+      
+        
+      
+    </script>
+  </body>
+</html>
