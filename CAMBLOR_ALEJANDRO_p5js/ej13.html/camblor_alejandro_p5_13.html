@@ -72,6 +72,7 @@
             background(10);
         }
         
+        // Texto fecha
         noStroke();
         if (x_s <= width + r_s) 
         { fill(0);} 
@@ -97,7 +98,7 @@
         //Stickman
         if (x_s <= width + r_s) 
         { stroke(0);} 
-        else { stroke(255); } 
+        else { stroke (255); } 
         strokeWeight(0.06 * S);
         noFill();
         
@@ -133,11 +134,12 @@
         // Reseteo mes e incremento año si me paso de 12 meses 
         if (mes > 12) 
         { mes = 1; anio = anio + 1; } 
+        }
         
         v_y = v_y + g;
         y_p = y_p + v_y;
         if (y_p > ground_y) 
-        { y_p = groundY; v_y = 0; }
+        { y_p = ground_y; v_y = 0; }
           
         if (keyIsDown(LEFT_ARROW)) 
         {x_p = x_p - v_p;} 
@@ -149,7 +151,7 @@
         if (x_p > width) 
         {x_p = width;}
         
-        }
+        
       }
         
         function keyPressed() {
