@@ -119,27 +119,34 @@
         x_s = x_s + v_s;
         x_l = x_l + v_l; 
         
-        if (x_s >= 2 * width + d_l) { 
-          x_s = -r_s; 
-          x_l = -width - d_s;
-        }
-        
-        if (x_s > 2*width + r_s) {
+        if (x_s >= 2 * width + d_l) {
+        x_s = -r_s;
+        x_l = -width - d_s;
 
-        // Incremento la variable día. 
-        dia = dia + 1; 
-        // Reseteo día e incremento mes si me paso de 30 días 
-        if (dia > 30)
-        { dia = 1; mes = mes + 1; } 
-        // Reseteo mes e incremento año si me paso de 12 meses 
-        if (mes > 12) 
-        { mes = 1; anio = anio + 1; } 
+        dia = dia + 1;
+        if (dia > 30) {
+        dia = 1;
+        mes = mes + 1;
+        }
+        if (mes > 12) {
+        mes = 1;
+        anio = anio + 1;
+          }
         }
         
+        // FÍSICA DEL SALTO
         v_y = v_y + g;
         y_p = y_p + v_y;
-        if (y_p > ground_y) 
-        { y_p = ground_y; v_y = 0; }
+
+        if (y_p > ground_y) {
+          y_p = ground_y;
+          v_y = 0;
+        }
+
+        // RECALCULAR CUERPO-
+        hipY = y_p - legL;
+        shoulderY = hipY - bodyL;
+        headY = shoulderY - rHead;
           
         if (keyIsDown(LEFT_ARROW)) 
         {x_p = x_p - v_p;} 
@@ -156,13 +163,15 @@
         
         function keyPressed() {
         if (keyCode === UP_ARROW) {
-        // Solo saltamos si estamos en el suelo
-        if (y_p === ground_y) 
-        {v_y = jump_v;}
+        if (y_p >= ground_y) {
+          v_y = jump_v;
+          }
         }
-        }
+      }
         
       
     </script>
   </body>
 </html>
+
+
