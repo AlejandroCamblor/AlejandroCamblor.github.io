@@ -22,6 +22,11 @@
       let Puntos;
       let GameOver;
       let xB, yB, vB, wB, hB;
+      let imgObjetivo;
+      
+      function preload() {
+        imgObjetivo = loadImage("https://tse2.mm.bing.net/th/id/OIP.EEp4PRIsXnB-PxLPTs_KcAHaI7?rs=1&pid=ImgDetMain&o=7&rm=3");
+      }
 
       function setup() {
         createCanvas(600, 600);
@@ -239,6 +244,7 @@
         noStroke();
         fill(255,0,0);
         rect(xO, yO, wO ,hO);
+        image(imgObjetivo, xO, yO, wO, hO);
       }
       
       function dibujarObjetivoB() {
