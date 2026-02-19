@@ -35,21 +35,35 @@
 
   <div>
    <h3> Explicación de cómo funciona el código</h3>
-
-   <p>
-       Este código básicamente te permite usar la cámara de tu móvil u ordenador para detectar objetos en tiempo real.
-       Lo hace gracias a una herramienta llamada ml5.js, que facilita la integración de inteligencia artificial en
-       páginas web. El código utiliza un modelo que puede reconocer una gran variedad de cosas, como personas, animales, coches, etc. 
-       <br> Cuando haces clic en el botón "Iniciar cámara", el navegador te pide permiso para usar la cámara. Una vez que le das permiso, empieza a mostrar lo que ve la cámara en una ventana.
-       Además, sobre esa ventana se coloca un lienzo (canvas) donde se dibujan los resultados de la detección de
-       objetos. A medida que el video de la cámara va avanzando, el modelo de inteligencia artificial analiza cada
-       cuadro para ver qué objetos hay en la imagen. 
-       <br> Cuando detecta algo, dibuja un rectángulo alrededor del objeto en el lienzo y pone una etiqueta con el nombre del objeto y el porcentaje de certeza de que lo ha identificado
-       correctamente. Además, siempre muestra cuál es el objeto que tiene la mayor posibilidad de haber sido correctamente identificado. 
-       <br> Este proceso se repite constantemente: el sistema detecta objetos en cada cuadro de video y los muestra en la pantalla en tiempo real. Así, puedes ver cómo el sistema va
-       identificando objetos a medida que se muestran frente a la cámara. 
-       <br> En resumen, lo que hace este código es permitir que tu navegador use la cámara para reconocer objetos a través de inteligencia artificial, todo en tiempo real.
-   </p>
+    <h4> setStatus(t) </h4>
+      <p>
+       Esta función cambia el texto que se muestra en el elemento con el id status. Es utilizada para actualizar el estado del sistema, como "iniciando cámara", "cargando modelo", o "detectando objetos".
+      </p>
+    <h4> initCamera() </h4>
+      <p>
+       Esta función se encarga de acceder a la cámara del dispositivo. Usa navigator.mediaDevices.getUserMedia() para grabar y luego lo muestra en la etiqueta "video" de la página.
+      </p>
+    <h4> draw(detections) </h4>
+      <p>
+       Esta función es responsable de dibujar lo detectado anteriormente en el canvas. Para cada objeto detectado, dibuja un rectángulo alrededor y escribe su etiqueta (nombre, lo que supuestamente es) junto con el porcentaje de probabilidad de que este haya sido correctamente identificado.
+      </p>
+    <h4> pickBest(detections) </h4>
+      <p>
+       Esta función selecciona la detección con la mayor certeza. Si se han detectado varios objetos, escoge el objeto con la mayor probabilidad de ser identificado correctamente.
+      </p>
+    <h4> loopDetect() </h4>
+      <p>
+       Esta función es la que controla la detección en tiempo real. Se ejecuta en un bucle continuo, donde llama al modelo de detección de objetos y actualiza la pantalla con las detecciones y el estado.
+      </p>
+    <h4> btnStart.addEventListener() </h4>
+      <p>
+       Este bloque de código configura el comportamiento del botón "Iniciar cámara". Cuando el usuario hace clic en el botón, se ejecuta un conjunto de acciones.
+      <br> Deshabilita el botón para evitar múltiples clics.
+      <br> Muestra un mensaje de estado que indica que la cámara está siendo iniciada.
+      <br> Llama a initCamera() para configurar la cámara.
+      <br> Carga el modelo de detección COCO-SSD.
+      <br> Comienza el proceso de detección en tiempo real al activar el bucle loopDetect().
+      </p>
 
   </div>
 
@@ -149,4 +163,5 @@
     });
   </script>
 </body>
+
 </html>
