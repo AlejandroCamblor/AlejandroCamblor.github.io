@@ -31,7 +31,7 @@
 
     <span id="status" class="badge">Estado: esperando…</span>
   </div>
-
+  
   <script>
     let video;
     let bodyPose;
@@ -160,5 +160,42 @@
       poses = results;
     }
   </script>
+  
+  <p> 
+  <h2>Reporte de fallas detectadas</h2>
+
+<h3>1. Mala iluminación o contraluz</h3>
+<h4>Qué ocurre:</h4> Algunos puntos del cuerpo desaparecen o aparecen en posiciones incorrectas.
+<h4>Cuándo ocurre:</h4> Cuando la luz está detrás de la persona o cuando el sitio está poco iluminado.
+<h4>Por qué puede pasar:</h4> El modelo de visión necesita contraste suficiente para reconocer la silueta del cuerpo. Si el cuerpo está oscuro o el fondo es demasiado reluciente, el modelo pierde referencias.
+<h4>Cómo lo comprobé:</h4> Probé a colocarme delante de una ventana con mucha luz detrás y los puntos del esqueleto comenzaron a desaparecer o moverse de forma incorrecta.
+  
+
+<h3>2. Movimiento rápido</h3>
+<h4>Qué ocurre:</h4> Los puntos del cuerpo saltan o se mueven de forma brusca.
+<h4>Cuándo ocurre:</h4> Cuando se mueve rápidamente por ejemplo un brazo o el cuerpo completo.
+<h4>Por qué puede pasar:</h4> El modelo procesa imágenes por frames. Si el movimiento es muy rápido entre un frame y otro, el algoritmo no puede estimar correctamente la posición de los puntos de referencia.
+<h4>Cómo lo comprobé:</h4> Moví el brazo muy rápido frente a la cámara y vi que los puntos aparecían con retraso o en posiciones incorrectas.
+
+<h3>3. Distancia incorrecta a la cámara</h3>
+<p><b>Qué ocurre:</b> El modelo detecta pocos puntos o el esqueleto aparece incompleto.</p>
+<p><b>Cuándo ocurre:</b> Cuando el cuerpo está demasiado lejos o demasiado cerca de la cámara.</p>
+<p><b>Por qué puede pasar:</b> Si la persona está muy lejos, el modelo tiene pocos píxeles para analizar. Si está demasiado cerca, algunas partes del cuerpo quedan fuera del encuadre.</p>
+<p><b>Cómo lo comprobé:</b> Me alejé varios metros de la cámara y el sistema dejó de detectar correctamente las piernas.</p>
+
+<h3>4. Partes del cuerpo fuera del encuadre</h3>
+<h4>Qué ocurre:</h4> Algunos puntos desaparecen o el esqueleto se deforma.
+<h4>Cuándo ocurre:</h4> Cuando una mano, brazo o pierna queda fuera de la imagen.
+<h4>Por qué puede pasar:</h4> El modelo intenta estimar la postura completa del cuerpo, pero si faltan partes visibles, puede generar estimaciones incorrectas o eliminar puntos.
+<h4>Cómo lo comprobé:</h4> Levanté un brazo fuera de la cámara y el punto correspondiente desapareció o apareció en posiciones incorrectas.
+
+<h3>5.Incompatibilidad con Apple</h3>
+<h4>Qué ocurre:</h4> El modelo confunde la posición de algunos puntos o deja de detectarlos.
+<h4>Cuándo ocurre:</h4> Cuando se usaun dispositivo de Apple.
+<h4>Por qué puede pasar:</h4> El modelo no es compatible con dichos dispositivos.
+<h4>Cómo lo comprobé:</h4> Cuando me puse ha intentar hacer la tarea con mi móvil, la web no detectaba correctamente los cuerpos, independientemente de la iluminación y distancia.
+  
 </body>
 </html>
+
+
