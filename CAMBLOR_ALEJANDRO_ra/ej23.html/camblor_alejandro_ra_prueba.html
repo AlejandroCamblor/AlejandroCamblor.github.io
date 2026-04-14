@@ -24,132 +24,30 @@
     <!-- Contenedor del objeto -->
     <a-entity id="modelo" position="0 0 -4">
 
-    <!-- Cuerpo -->
-    <a-sphere 
-      position="0 0.4 0" 
-      radius="0.6" 
-      color="white">
-    </a-sphere>
-    
-    <a-sphere 
-      position="0 1.2 0" 
-      radius="0.45" 
-      color="white">
-    </a-sphere>
-    
-    <a-sphere 
-        position="0 1.85 0" 
-      radius="0.3" 
-      color="white">
-    </a-sphere>
+      <!-- Cuerpo principal -->
+      <a-cylinder
+        position="0 0.6 0"
+        radius="0.15"
+        height="0.8"
+        color="#ccc">
+      </a-cylinder>
 
-    <!-- Ojos -->
-    <a-sphere 
-      position="-0.1 1.95 0.28" 
-      radius="0.04" 
-      color="black">
-    </a-sphere>
-    
-    <a-sphere 
-      position="0.1 1.95 0.28" 
-      radius="0.04" 
-      color="black">
-    </a-sphere>
+      <!-- Punta -->
+      <a-cone
+        position="0 1.1 0"
+        radius-bottom="0.15"
+        height="0.3"
+        color="red">
+      </a-cone>
 
-  <!-- Nariz -->
-  <a-cone 
-    position="0 1.85 0.4"
-    radius-bottom="0.05"
-    height="0.25"
-    color="orange"
-    rotation="90 0 0">
-  </a-cone>
+      <!-- Detalle frontal -->
+      <a-sphere
+        position="0 0.7 0.15"
+        radius="0.05"
+        color="blue">
+      </a-sphere>
 
-  <!-- Botones -->
-  <a-sphere 
-    position="0 1.2 0.5" 
-    radius="0.05" 
-    color="black">
-  </a-sphere>
-  <a-sphere 
-    position="0 1.0 0.55"
-    radius="0.05" 
-    color="black">
-  </a-sphere>
-  <a-sphere 
-    position="0 0.8 0.55" 
-    radius="0.05" 
-    color="black">
-  </a-sphere>
-      
-  <!-- Brazos -->
-  <a-cylinder 
-    position="-0.6 1.2 0"
-    radius="0.03"
-    height="0.8"
-    color="brown"
-    rotation="0 0 45">
-  </a-cylinder>
-
-  <a-cylinder 
-    position="0.6 1.2 0"
-    radius="0.03"
-    height="0.8"
-    color="brown"
-    rotation="0 0 -45">
-  </a-cylinder>
-      
-  <!-- Dedos izqda -->
-  <a-cylinder 
-    position="-0.88 1.54 0"
-    radius="0.03"
-    height="0.15"
-    color="brown"
-    rotation="0">
-  </a-cylinder>
-  
-  <a-cylinder 
-    position="-0.9 1.5 0"
-    radius="0.03"
-    height="0.2"
-    color="brown"
-    rotation="0 0 45">
-  </a-cylinder>
-  
-  <a-cylinder 
-    position="-0.95 1.5 0"
-    radius="0.03"
-    height="0.15"
-    color="brown"
-    rotation="0 0 90">
-  </a-cylinder>
-      
-<!-- Dedos drcha-->
-  <a-cylinder 
-    position="0.9 1.5 0"
-    radius="0.03"
-    height="0.25"
-    color="brown"
-    rotation="0 0 -45">
-  </a-cylinder>
-      
-  <a-cylinder 
-    position="0.95 1.5 0"
-    radius="0.03"
-    height="0.15"
-    color="brown"
-    rotation="0 0 85">
-  </a-cylinder>
-      
-  <a-cylinder 
-    position="0.9 1.55 0"
-    radius="0.03"
-    height="0.15"
-    color="brown"
-    rotation="0 0 0">
-  </a-cylinder>
-
-</a-entity>
+    </a-entity>
 
     <!-- Cámara -->
     <a-camera position="0 1.6 0"></a-camera>
